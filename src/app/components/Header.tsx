@@ -1,4 +1,3 @@
-// src/components/Header.tsx
 import React from 'react';
 
 const Header: React.FC = () => {
@@ -26,13 +25,13 @@ const Header: React.FC = () => {
         <div className="container mx-auto flex justify-between items-center py-4 px-6">
           <div className="text-2xl text-black font-bold">Exclusive</div>
           <nav className="space-x-4">
-            <a href="#" className="text-gray-700 hover:text-gray-900">
+            <a href="/home" className="text-gray-700 hover:text-gray-900">
               Home
             </a>
-            <a href="#" className="text-gray-700 hover:text-gray-900">
+            <a href="/contact" className="text-gray-700 hover:text-gray-900">
               Contact
             </a>
-            <a href="#" className="text-gray-700 hover:text-gray-900">
+            <a href="/about" className="text-gray-700 hover:text-gray-900">
               About
             </a>
             <a href="/signup" className="text-gray-700 hover:text-gray-900">

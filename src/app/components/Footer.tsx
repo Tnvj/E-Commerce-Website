@@ -1,9 +1,8 @@
-// src/components/Footer.tsx
 import React from 'react';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-black text-white py-8">
+    <footer className="bg-black text-white py-8 mt-12">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
         <div>
           <h3 className="text-xl font-bold mb-4">Exclusive</h3>
@@ -40,27 +39,27 @@ const Footer: React.FC = () => {
           <h3 className="text-xl font-bold mb-4">Account</h3>
           <ul className="space-y-2">
             <li>
-              <a href="#" className="hover:text-gray-400">
+              <a href="/account" className="hover:text-gray-400">
                 My Account
               </a>
             </li>
             <li>
-              <a href="#" className="hover:text-gray-400">
+              <a href="/signup" className="hover:text-gray-400">
                 Login / Register
               </a>
             </li>
             <li>
-              <a href="#" className="hover:text-gray-400">
+              <a href="/checkout" className="hover:text-gray-400">
                 Cart
               </a>
             </li>
             <li>
-              <a href="#" className="hover:text-gray-400">
+              <a href="/wishlist" className="hover:text-gray-400">
                 Wishlist
               </a>
             </li>
             <li>
-              <a href="#" className="hover:text-gray-400">
+              <a href="/home" className="hover:text-gray-400">
                 Shop
               </a>
             </li>
@@ -93,41 +92,41 @@ const Footer: React.FC = () => {
         </div>
         <div>
           <h3 className="text-xl font-bold mb-4">Download App</h3>
-          <div className="flex justify-center space-x-4">
+          <div className="flex flex-col items-start space-y-4">
             <a href="#">
               <img
-                src="/google-play-badge.png"
+                src="/images/googleplay.png"
                 alt="Google Play"
                 className="h-12"
               />
             </a>
             <a href="#">
               <img
-                src="/app-store-badge.png"
+                src="/images/appstore.png"
                 alt="App Store"
                 className="h-12"
               />
             </a>
           </div>
+          <div className="mt-8">
+            <div className="flex justify-start space-x-4">
+              <a href="#" className="hover:text-gray-400">
+                <img src="/images/facebook.png" alt="Facebook" className="h-6 w-6" />
+              </a>
+              <a href="#" className="hover:text-gray-400">
+                <img src="/images/twitter.png" alt="Twitter" className="h-6 w-6" />
+              </a>
+              <a href="#" className="hover:text-gray-400">
+                <img src="/images/instagram.png" alt="Instagram" className="h-6 w-6" />
+              </a>
+              <a href="#" className="hover:text-gray-400">
+                <img src="/images/linkedin.png" alt="LinkedIn" className="h-6 w-6" />
+              </a>
+            </div>
+          </div>
         </div>
       </div>
-      <div className="text-center mt-8">
-        <div className="mt-4">
-          <a href="#" className="hover:text-gray-400">
-            <img src="/images/facebook.png" alt="Facebook" className="h-6 w-6" />
-          </a>
-          <a href="#" className="ml-4 hover:text-gray-400">
-            <img src="/images/twitter.png" alt="Twitter" className="h-6 w-6" />
-          </a>
-          <a href="#" className="ml-4 hover:text-gray-400">
-            <img src="/images/instagram.png" alt="Instagram" className="h-6 w-6" />
-          </a>
-          <a href="#" className="ml-4 hover:text-gray-400">
-            <img src="/images/linkedin.png" alt="LinkedIn" className="h-6 w-6" />
-          </a>
-        </div>
-      </div>
-      <hr className="opacity-10"></hr>
+      <hr className="opacity-10 mt-12"></hr>
       <div className="text-center mt-4 opacity-30">
         &copy; Copyright Rimel 2022. All rights reserved
       </div>

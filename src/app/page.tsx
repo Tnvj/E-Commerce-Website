@@ -39,14 +39,14 @@ const LoginPage = () => {
                 <input
                   type="password"
                   id="password"
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
               <div className="flex justify-between items-center w-full">
-                <button className="bg-red-600 text-white py-4 px-12 rounded-lg hover:bg-red-700">
+                <button className="bg-red-500 text-white py-4 px-12 rounded-lg hover:bg-red-700">
                   Log In
                 </button>
-                <a href="#" className="text-red-600 hover:text-red-700">
+                <a href="#" className="text-red-500 hover:text-red-700">
                   Forget Password?
                 </a>
               </div>
