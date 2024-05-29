@@ -73,7 +73,7 @@ const Header1: React.FC = () => {
                 className="h-6 w-6"
               />
             </a>
-            <a href="checkout">
+            <a href="/cart">
               <img
                 src="/images/cart1.png"
                 alt="Shopping Cart"

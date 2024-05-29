@@ -35,30 +35,30 @@ const PromoSection: React.FC = () => {
 
     return (
       <div key={interval} className="text-center mx-2">
-        <div className="flex flex-col justify-center items-center w-20 h-20 bg-white rounded-full text-black">
-          <div className="text-3xl font-bold">{timeLeft[interval]}</div>
-          <div className="text-sm">{interval.charAt(0).toUpperCase() + interval.slice(1)}</div>
+        <div className="flex flex-col justify-center items-center bg-white rounded-full text-black p-4 m-2">
+          <div className="text-lg font-bold">{timeLeft[interval]}</div>
+          <div className="text-xs">{interval.charAt(0).toUpperCase() + interval.slice(1)}</div>
         </div>
       </div>
     );
   });
 
   return (
-    <div className="bg-white text-white flex justify-center items-center my-16">
-    <div className="flex flex-col lg:flex-row justify-between items-center w-3/4 l-3/4 lg:w-2/3 xl:w-1/2 p-10 bg-black rounded-sm">
-      <div className="flex flex-col justify-center mb-8 lg:mb-0">
-        <div className="text-green-500 mb-2">Categories</div>
-        <div className="text-4xl lg:text-5xl font-bold mb-4">Enhance Your Music Experience</div>
-        <div className="flex justify-center mb-4">
-          {timerComponents.length ? timerComponents : <span>Time's up!</span>}
+    <div className="flex justify-center items-center py-16">
+      <div className="flex flex-col lg:flex-row justify-between items-center w-full lg:w-2/3 xl:w-3/4 p-12 bg-black rounded-sm">
+        <div className="flex flex-col justify-center mb-8 lg:mb-0">
+          <div className="text-green-500 mb-2 text-xl">Categories</div>
+          <div className="text-4xl lg:text-5xl font-bold mb-4">Enhance Your Music Experience</div>
+          <div className="flex justify-center mb-4">
+            {timerComponents.length ? timerComponents : <span>Time's up!</span>}
+          </div>
+          <button className="bg-green-500 text-white px-4 py-2 rounded-md w-32">Buy Now!</button>
         </div>
-        <button className="bg-green-500 text-white px-4 py-2 rounded-md w-32">Buy Now!</button>
-      </div>
-      <div className="lg:ml-8">
-        <Image src="/images/jbl.png" alt="JBL Speaker" width={600} height={400} />
+        <div className="lg:ml-8 mt-8 lg:mt-0">
+          <Image src="/images/jbl1.png" alt="JBL Speaker" width={350} height={250} layout="intrinsic" />
+        </div>
       </div>
     </div>
-  </div>
   );
 };
 
