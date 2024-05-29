@@ -9,12 +9,51 @@ import Carousel from '../components/carousel';
 import Sidebar from '../components/sidebar';
 import CircleFeature from '../components/circle';
 import PromoSection from '../components/promo';
+import CountdownTimer from '../components/countdown';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import React1, { useEffect, useState } from 'react';
+
+
+interface Product {
+  image: string;
+  title: string;
+  price: number;
+  rating: { rate: number; count: number };
+}
+
 
 const Page: React.FC = () => {
+
+  const targetDate = new Date('2024-06-01T00:00:00');
+
+  const [productsOurProduct, setProductsOurProduct] = useState<Product[]>([]);
+  const [productsJustForYou, setProductsJustForYou] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const resOurProduct = await fetch('https://fakestoreapi.com/products?limit=8');
+        const OurProductData: Product[] = await resOurProduct.json();
+        setProductsOurProduct(OurProductData);
+
+        const resJustForYou = await fetch('https://fakestoreapi.com/products?limit=4');
+        const justForYouData: Product[] = await resJustForYou.json();
+        setProductsJustForYou(justForYouData);
+      } catch (error) {
+        console.error('Failed to fetch products', error);
+        //should i be going to the 404 page
+      }
+    };
+
+    
+
+    fetchProducts();
+  }, []);
   return (
-    <div>
-      <main className='bg-white'>
-        <Header />
+    <div className='bg-white'>
+      <Header />
+      <main className='mb-24'>
+        
         <div className="flex h-screen pr-24 pl-24">
           <Sidebar />
           <div className="flex-1 flex items-center justify-center">
@@ -26,69 +65,41 @@ const Page: React.FC = () => {
           </div>
         </div>
 
-        <section className="mt-8 px-4 pr-24 pl-24">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-2xl font-bold">Flash Sales</h2>
-            <button className="bg-red-500 text-white px-4 py-2 rounded-md">View All</button>
-          </div>
-          <div className="grid grid-cols-5 gap-4">
-            <ProductCard
-              image="/images/login.png"
-              name="HAVIT HV-G92 Gamepad"
-              discount={40}
-              originalPrice={160}
-              discountedPrice={120}
-              rating="★★★★★"
-              reviews={88}
-            />
-            <ProductCard
-              image="/images/login.png"
-              name="AK-900 Wired Keyboard"
-              discount={35}
-              originalPrice={1160}
-              discountedPrice={960}
-              rating="★★★★★"
-              reviews={75}
-            />
-            <ProductCard
-              image="/images/login.png"
-              name="IPS LCD Gaming Monitor"
-              discount={30}
-              originalPrice={400}
-              discountedPrice={370}
-              rating="★★★★★"
-              reviews={99}
-            />
-            <ProductCard
-              image="/images/login.png"
-              name="S-Series Comfort Chair"
-              discount={25}
-              originalPrice={400}
-              discountedPrice={375}
-              rating="★★★★★"
-              reviews={99}
-            />
-            <ProductCard
-              image="/images/login.png"
-              name="S-Series Comfort Chair"
-              discount={25}
-              originalPrice={400}
-              discountedPrice={375}
-              rating="★★★★★"
-              reviews={99}
-            />
-          </div>
-          <div className="mt-4 text-center">
-            <button className="bg-red-500 text-white px-6 py-2 rounded-md">View All Products</button>
-          </div>
-        </section>
-
-
-        <section className="mt-8 px-8">
-      <div className="text-left mb-4">
-        <h2 className="text-red-500 text-sm font-bold">Categories</h2>
-        <h2 className="text-2xl text-black font-bold">Browse By Category</h2>
+        <section className="mt-8 px-4 lg:px-24">
+      <div className="flex justify-between items-center mb-4">
+        <CountdownTimer targetDate={targetDate} />
+        <div className='text-black flex'>
+          <FaChevronLeft className="mx-2 cursor-pointer" />
+          <FaChevronRight className="mx-2 cursor-pointer" />
+        </div>
       </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {productsJustForYou.map((product, index) => (
+            <ProductCard
+              key={index}
+              image={product.image}
+              name={product.title}
+              discount={20} 
+              originalPrice={product.price}
+              discountedPrice={product.price * 0.8} 
+              rating={'★ ★ ★ ★ ★'} 
+              reviews={product.rating.count} 
+            />
+          ))}
+
+        </div>
+      <div className="mt-4 text-center">
+        <button className="bg-red-500 text-white px-6 py-2 rounded-md">View All Products</button>
+      </div>
+    </section>
+        <section className="mt-8 px-8 lg:px-24">
+        <div className="flex justify-between items-center mb-4">
+            <div><div className='flex'><div className="bg-red-500 w-4 h-8 mr-2 rounded-md"></div>
+            <h4 className=" font-medium text-red-500 mb-8">Categories</h4>
+            </div>
+            <h2 className="text-2xl font-medium text-black">Browse By Category</h2>
+          </div></div>
       <div className="gap-6 flex justify-center flex-wrap">
         <CategoryCard icon="/images/category-CellPhone.png" title="Phones" />
         <CategoryCard icon="/images/Category-Computer.png" title="Computers" />
@@ -98,16 +109,67 @@ const Page: React.FC = () => {
         <CategoryCard icon="/images/Category-Gaming.png" title="Gaming" />
       </div>
     </section>
+    <section className="mt-8 px-8 lg:px-24">
+    <div className="flex justify-between items-center mt-8 mb-4">
+    <div className="flex justify-between items-center mb-4">
+            <div><div className='flex'><div className="bg-red-500 w-4 h-8 mr-2 rounded-md"></div>
+            <h4 className=" font-medium text-red-500 mb-8">This Month</h4>
+            </div>
+            <h2 className="text-2xl font-medium text-black">Best Selling Products</h2>
+          </div></div>
+          <button className="bg-red-500 text-white px-4 py-2 rounded-sm">
+            View All
+          </button>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {productsJustForYou.map((product, index) => (
+            <ProductCard
+              key={index}
+              image={product.image}
+              name={product.title}
+              discount={20} 
+              originalPrice={product.price}
+              discountedPrice={product.price * 0.8} 
+              rating={'★ ★ ★ ★ ★'} 
+              reviews={product.rating.count} 
+            />
+          ))}
+        </div></section>
 
-
-
-export default BrowseByCategory;
 
         <div>
       <PromoSection />
     </div>
+
+    <section className="mt-8 px-8 lg:px-24">
+    <div className="flex justify-between items-center mt-8 mb-4">
+    <div className="flex justify-between items-center mb-4">
+            <div><div className='flex'><div className="bg-red-500 w-4 h-8 mr-2 rounded-md"></div>
+            <h4 className=" font-medium text-red-500 mb-8">Our Products</h4>
+            </div>
+            <h2 className="text-2xl font-medium text-black">Explore our Products</h2>
+          </div></div>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 my-4">
+          {productsOurProduct.map((product, index) => (
+            <ProductCard
+              key={index}
+              image={product.image}
+              name={product.title}
+              discount={20} 
+              originalPrice={product.price}
+              discountedPrice={product.price * 0.8} 
+              rating={'★ ★ ★ ★ ★'} 
+              reviews={product.rating.count} 
+            />
+          ))}
+        </div>  <div className="mt-4 text-center">
+        <button className="bg-red-500 text-white px-6 py-2 rounded-sm">View All Products</button>
+      </div></section>
+
+
         <section className="mt-24 px-4 pr-24 pl-24">
-          <div className="flex justify-between items-center mb-4">
+        <div className="flex justify-between items-center mb-4">
             <div><div className='flex'><div className="bg-red-500 w-4 h-8 mr-2 rounded-md"></div>
             <h4 className=" font-medium text-red-500 mb-8">Featured</h4>
             </div>
@@ -154,23 +216,23 @@ export default BrowseByCategory;
 
         </section>
 
-        <section className="my-8 flex justify-around text-center text-black mt-24 mb-24 bg-white">
-          <CircleFeature
-            icon="/images/icon-delivery.png"
-            title="Free and Fast Delivery"
-            description="Free delivery for all orders over $140"
-          />
-          <CircleFeature
-            icon="/images/Icon-Customer-service.png"
-            title="24/7 Customer Service"
-            description="Friendly 24/7 customer support"
-          />
-          <CircleFeature
-            icon="/images/Icon-secure.png"
-            title="Money Back Guarantee"
-            description="We return money within 30 days"
-          />
-        </section>
+        <section className="my-8 flex justify-around text-center text-black">
+      <CircleFeature
+        icon="/images/icon-delivery.png"
+        title="Free and Fast Delivery"
+        description="Free delivery for all orders over $140"
+      />
+      <CircleFeature
+        icon="/images/Icon-Customer-service.png"
+        title="24/7 Customer Service"
+        description="Friendly 24/7 customer support"
+      />
+      <CircleFeature
+        icon="/images/Icon-secure.png"
+        title="Money Back Guarantee"
+        description="We return money within 30 days"
+      />
+    </section>
       </main>
       <Footer />
     </div>
