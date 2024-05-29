@@ -15,6 +15,7 @@ import React1, { useEffect, useState } from 'react';
 
 
 interface Product {
+  id : number;
   image: string;
   title: string;
   price: number;
@@ -78,6 +79,7 @@ const Page: React.FC = () => {
           {productsJustForYou.map((product, index) => (
             <ProductCard
               key={index}
+              id={product.id}
               image={product.image}
               name={product.title}
               discount={20} 
@@ -90,7 +92,7 @@ const Page: React.FC = () => {
 
         </div>
       <div className="mt-4 text-center">
-        <button className="bg-red-500 text-white px-6 py-2 rounded-md">View All Products</button>
+        <a href='/wishlist'><button className="bg-red-500 text-white px-6 py-2 rounded-md">View All Products</button></a>
       </div>
     </section>
         <section className="mt-8 px-8 lg:px-24">
@@ -117,14 +119,15 @@ const Page: React.FC = () => {
             </div>
             <h2 className="text-2xl font-medium text-black">Best Selling Products</h2>
           </div></div>
-          <button className="bg-red-500 text-white px-4 py-2 rounded-sm">
+          <a href='/wishlist'><button className="bg-red-500 text-white px-4 py-2 rounded-sm">
             View All
-          </button>
+          </button></a>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {productsJustForYou.map((product, index) => (
             <ProductCard
               key={index}
+              id={product.id}
               image={product.image}
               name={product.title}
               discount={20} 
@@ -141,82 +144,59 @@ const Page: React.FC = () => {
       <PromoSection />
     </div>
 
-    <section className="mt-8 px-8 lg:px-24">
-    <div className="flex justify-between items-center mt-8 mb-4">
-    <div className="flex justify-between items-center mb-4">
-            <div><div className='flex'><div className="bg-red-500 w-4 h-8 mr-2 rounded-md"></div>
-            <h4 className=" font-medium text-red-500 mb-8">Our Products</h4>
+    <section className="mt-24 px-4 max-w-screen-xl mx-auto">
+    <div className="flex items-center mb-4">
+        <div>
+            <div className='flex items-center mb-2'>
+                <div className="bg-red-500 w-4 h-8 mr-2 rounded-md"></div>
+                <h4 className="font-medium text-red-500">Featured</h4>
             </div>
-            <h2 className="text-2xl font-medium text-black">Explore our Products</h2>
-          </div></div>
+            <h2 className="text-2xl font-medium text-black">New Arrival</h2>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 my-4">
-          {productsOurProduct.map((product, index) => (
-            <ProductCard
-              key={index}
-              image={product.image}
-              name={product.title}
-              discount={20} 
-              originalPrice={product.price}
-              discountedPrice={product.price * 0.8} 
-              rating={'★ ★ ★ ★ ★'} 
-              reviews={product.rating.count} 
-            />
-          ))}
-        </div>  <div className="mt-4 text-center">
-        <button className="bg-red-500 text-white px-6 py-2 rounded-sm">View All Products</button>
-      </div></section>
-
-
-        <section className="mt-24 px-4 pr-24 pl-24">
-        <div className="flex justify-between items-center mb-4">
-            <div><div className='flex'><div className="bg-red-500 w-4 h-8 mr-2 rounded-md"></div>
-            <h4 className=" font-medium text-red-500 mb-8">Featured</h4>
-            </div>
-            <h2 className="text-2xl font-medium text-black">New Arrivals</h2>
-          </div></div>
-            <div className="grid grid-cols-2 gap-4">
-  <div className="relative row-span-2">
-    <img src="/images/ps.png" alt="PlayStation 5" className="w-full h-full object-cover rounded-sm" />
-    <div className="absolute bottom-4 left-4 text-white">
-      <h3 className="text-lg font-bold">PlayStation 5</h3>
-      <p>Black and White version of the PS5 coming out on sale.</p>
-      <button className="mt-2 text-white  px-4 py-2 rounded-md">Shop Now</button>
-    </div>
-  </div>
-  <div className="grid grid-cols-1 gap-4">
-    <div className="relative">
-      <img src="/images/ps.png" alt="Women's Collections" className="w-full h-full object-cover rounded-sm" />
-      <div className="absolute bottom-4 left-4 text-white">
-        <h3 className="text-lg font-bold">Women's Collections</h3>
-        <p>Featured woman collections that give you another vibe.</p>
-        <button className="mt-2 text-white  px-4 py-2 rounded-md">Shop Now</button>
-      </div>
     </div>
     <div className="grid grid-cols-2 gap-4">
-      <div className="relative">
-        <img src="/images/ps.png" alt="Speakers" className="w-full h-full object-cover rounded-sm" />
-        <div className="absolute bottom-4 left-4 text-white">
-          <h3 className="text-lg font-bold">Speakers</h3>
-          <p>Amazon wireless speakers</p>
-          <button className="mt-2 text-white  px-4 py-2 rounded-md">Shop Now</button>
+        <div className="relative">
+            <img src="/images/ps.png" alt="PlayStation 5" className="w-full h-full object-cover rounded-sm" />
+            <div className="absolute bottom-4 left-4 text-white">
+                <h3 className="text-lg font-bold">PlayStation 5</h3>
+                <p>Black and White version of the PS5 coming out on sale.</p>
+                <button className="mt-2 text-white px-4 py-2 rounded-md bg-black">Shop Now</button>
+            </div>
         </div>
-      </div>
-      <div className="relative">
-        <img src="/images/ps.png" alt="Perfume" className="w-full h-full object-cover rounded-sm" />
-        <div className="absolute bottom-4 left-4 text-white">
-          <h3 className="text-lg font-bold">Perfume</h3>
-          <p>GUCCI INTENSE OUD EDP</p>
-          <button className="mt-2 text-white px-4 py-2 rounded-md">Shop Now</button>
+        <div className="grid grid-rows-2 gap-4">
+            <div className="relative">
+                <img src="/images/ps.png" alt="Women's Collections" className="w-full h-full object-cover rounded-sm" />
+                <div className="absolute bottom-4 left-4 text-white">
+                    <h3 className="text-lg font-bold">Women's Collections</h3>
+                    <p>Featured woman collections that give you another vibe.</p>
+                    <button className="mt-2 text-white px-4 py-2 rounded-md bg-black">Shop Now</button>
+                </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+                <div className="relative">
+                    <img src="/images/ps.png" alt="Speakers" className="w-full h-full object-cover rounded-sm" />
+                    <div className="absolute bottom-4 left-4 text-white">
+                        <h3 className="text-lg font-bold">Speakers</h3>
+                        <p>Amazon wireless speakers</p>
+                        <button className="mt-2 text-white px-4 py-2 rounded-md bg-black">Shop Now</button>
+                    </div>
+                </div>
+                <div className="relative">
+                    <img src="/images/ps.png" alt="Perfume" className="w-full h-full object-cover rounded-sm" />
+                    <div className="absolute bottom-4 left-4 text-white">
+                        <h3 className="text-lg font-bold">Perfume</h3>
+                        <p>GUCCI INTENSE OUD EDP</p>
+                        <button className="mt-2 text-white px-4 py-2 rounded-md bg-black">Shop Now</button>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-</div>
+</section>
 
-        </section>
 
-        <section className="my-8 flex justify-around text-center text-black">
+
+        <section className="my-8 flex justify-around text-center text-black mx-24">
       <CircleFeature
         icon="/images/icon-delivery.png"
         title="Free and Fast Delivery"

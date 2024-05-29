@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import ProductCard from '../components/ProductCard';
 
 interface Product {
+  id: number;
   image: string;
   title: string;
   price: number;
@@ -49,6 +50,7 @@ const HomePage: React.FC = () => {
           {productsWishlist.map((product, index) => (
             <ProductCard
               key={index}
+              id = {product.id}
               image={product.image}
               name={product.title}
               discount={20} // Placeholder for discount
@@ -72,6 +74,7 @@ const HomePage: React.FC = () => {
           {productsJustForYou.map((product, index) => (
             <ProductCard
               key={index}
+              id = {product.id}
               image={product.image}
               name={product.title}
               discount={20} 

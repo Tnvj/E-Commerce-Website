@@ -1,6 +1,10 @@
+'use client'; // Use this directive to mark the component as a client component
+
 import React from 'react';
+import { useRouter } from 'next/navigation';
 
 interface ProductCardProps {
+  id: number;
   image: string;
   name: string;
   discount: number;
@@ -12,6 +16,7 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({
   image,
+  id,
   name,
   discount,
   originalPrice,
@@ -19,8 +24,13 @@ const ProductCard: React.FC<ProductCardProps> = ({
   rating,
   reviews,
 }) => {
+  const router = useRouter();
+  const handleAddToCart = () => {
+    router.push(`/product?=${id}`);
+  };
+
   return (
-    <div className="bg-white p-4 rounded-md  group relative">
+    <div className="bg-white p-4 rounded-md group relative">
       <div className="relative h-64 flex items-center justify-center overflow-hidden shadow">
         <img src={image} alt={name} className="w-full h-full object-contain" />
         {discount > 0 && (
@@ -37,7 +47,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
           </div>
         </div>
         <div className="absolute bottom-0 left-0 w-full opacity-0 group-hover:opacity-100">
-          <button className="bg-black text-white px-4 py-2  w-full">
+          <button
+            className="bg-black text-white px-4 py-2 w-full"
+            onClick={handleAddToCart}
+          >
             Add To Cart
           </button>
         </div>

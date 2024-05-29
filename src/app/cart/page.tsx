@@ -88,7 +88,7 @@ const CartPage: React.FC = () => {
               <span>Total:</span>
               <span>$1750</span>
             </div>
-            <button className="mt-6 bg-red-500 text-white w-full py-3 rounded">Proceed to Checkout</button>
+            <a href='/checkout'><button className="mt-6 bg-red-500 text-white w-full py-3 rounded">Proceed to Checkout</button></a>
           </div>
         </div>
       </div></main>
