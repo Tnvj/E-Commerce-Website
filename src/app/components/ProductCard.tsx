@@ -12,6 +12,7 @@ interface ProductCardProps {
   discountedPrice: number;
   rating: string;
   reviews: number;
+  description: string;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
@@ -23,6 +24,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   discountedPrice,
   rating,
   reviews,
+  description
 }) => {
   const router = useRouter();
   const handleAddToCart = () => {

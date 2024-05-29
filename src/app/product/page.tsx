@@ -147,6 +147,7 @@ interface Product {
   title: string;
   price: number;
   category: string;
+  description: string;
   rating: { rate: number; count: number };
 }
 
@@ -222,7 +223,7 @@ const ProductPage = () => {
     <div className="bg-white">
       <Header1 />
       {/* Main */}
-      <main className="p-8">
+      <main className="p-8 ">
         <div className="container mx-auto">
           <div className="flex justify-between items-center mb-4">
             <nav className="text-gray-500">
@@ -231,15 +232,16 @@ const ProductPage = () => {
               <span> {product.title}</span>
             </nav>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-black">
+          <div className="grid grid-cols-2 md:grid-cols-2 gap-8 text-black">
             <div className="flex flex-col items-center">
-              <img src={product.image} alt={product.title} className="w-full mb-4" />
-              <div className="grid grid-cols-4 gap-2">
-                <img src={product.image} alt="Gamepad view 1" className="w-full" />
-                 <img src={product.image} alt="Gamepad view 2" className="w-full" />
-                 <img src={product.image} alt="Gamepad view 3" className="w-full" />
-                 <img src={product.image} alt="Gamepad view 4" className="w-full" />
+            <div className="grid grid-rows-1 grid-cols-4 gap-2">
+                <img src={product.image} alt="Gamepad view 1" className="h-full" />
+                 <img src={product.image} alt="Gamepad view 2" className="h-full" />
+                 <img src={product.image} alt="Gamepad view 3" className="h-full" />
+                 <img src={product.image} alt="Gamepad view 4" className="h-full" />
               </div>
+              <img src={product.image} alt={product.title} className="w-full mb-4" />
+             
             </div>
             <div>
               <h1 className="text-3xl font-bold mb-2">{product.title}</h1>
@@ -249,7 +251,9 @@ const ProductPage = () => {
               </div>
               <div className="text-green-500 mb-4">In Stock</div>
               <div className="text-2xl mb-4">${product.price.toFixed(2)}</div>
-              <p className="mb-4">Playstation 5 Controller Skin High quality vinyl with air channel adhesive for easy bubble free install & mess free removal Pressure sensitive.</p>
+              <p className="mb-4">{product.description}</p>
+              <hr className='black-hr my-4' />
+
               <div className="flex items-center mb-4">
                 <span className="mr-4">Colours:</span>
                 <div className="flex">
@@ -276,22 +280,22 @@ const ProductPage = () => {
                 <button className="border border-gray-500 px-4 py-2 rounded-md">❤</button>
               </div>
               <div className="flex flex-col mt-4 border border-black">
-                <div className="flex items-center mb-2">
+                <div className="flex items-center mb-2 px-2 py-2">
                   <img src="/images/delivery.png" alt="Delivery" className="w-6 h-6 mr-2" />
                   <span>Free Delivery</span>
                 </div>
-                <div className="text-gray-500">Enter your postal code for Delivery Availability</div>
-                <div className="flex items-center mt-4 mb-2">
+                <div className="text-gray-500 px-2">Enter your postal code for Delivery Availability</div>
+                <div className="flex items-center mt-4 mb-2 px-2 py-2">
                   <img src="/images/return.png" alt="Return" className="w-6 h-6 mr-2" />
                   <span>Return Delivery</span>
                 </div>
-                <div className="text-gray-500">Free 30 Days Delivery Returns. <a href="#" className="underline">Details</a></div>
+                <div className="text-gray-500 px-2">Free 30 Days Delivery Returns. <a href="#" className="underline">Details</a></div>
               </div>
             </div>
           </div>
           <div className="flex items-center mt-8 mb-4">
-            <div className="bg-red-500 w-2 h-8 mr-2"></div>
-            <h2 className="text-2xl font-bold">Related Items</h2>
+            <div className="bg-red-500 w-2 h-8 mr-2 rounded-md"></div>
+            <h2 className=" text-red-500 font-bold">Related Items</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
              {relatedProducts.map((product, index) => (
