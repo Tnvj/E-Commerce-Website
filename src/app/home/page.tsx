@@ -144,6 +144,33 @@ const Page: React.FC = () => {
       <PromoSection />
     </div>
 
+    <section className="mt-8 px-8 lg:px-24">
+     <div className="flex justify-between items-center mt-8 mb-4">
+     <div className="flex justify-between items-center mb-4">
+             <div><div className='flex'><div className="bg-red-500 w-4 h-8 mr-2 rounded-md"></div>
+             <h4 className=" font-medium text-red-500 mb-8">Our Products</h4>
+             </div>
+             <h2 className="text-2xl font-medium text-black">Explore our Products</h2>
+           </div></div>
+         </div>
+         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 my-4">
+           {productsOurProduct.map((product, index) => (
+             <ProductCard
+               key={index}
+               id={product.id}
+               image={product.image}
+               name={product.title}
+               discount={20} 
+               originalPrice={product.price}
+               discountedPrice={product.price * 0.8} 
+               rating={'★ ★ ★ ★ ★'} 
+               reviews={product.rating.count} 
+             />
+           ))}
+         </div>  <div className="mt-4 text-center">
+         <button className="bg-red-500 text-white px-6 py-2 rounded-sm">View All Products</button>
+       </div></section>
+
     <section className="mt-24 px-4 max-w-screen-xl mx-auto">
     <div className="flex items-center mb-4">
         <div>
