@@ -20,6 +20,7 @@ interface Product {
   title: string;
   price: number;
   rating: { rate: number; count: number };
+  description: string;
 }
 
 
@@ -87,6 +88,7 @@ const Page: React.FC = () => {
               discountedPrice={product.price * 0.8} 
               rating={'★ ★ ★ ★ ★'} 
               reviews={product.rating.count} 
+              description={product.description}
             />
           ))}
 
@@ -134,6 +136,7 @@ const Page: React.FC = () => {
               originalPrice={product.price}
               discountedPrice={product.price * 0.8} 
               rating={'★ ★ ★ ★ ★'} 
+              description={product.description}
               reviews={product.rating.count} 
             />
           ))}
@@ -164,6 +167,7 @@ const Page: React.FC = () => {
                originalPrice={product.price}
                discountedPrice={product.price * 0.8} 
                rating={'★ ★ ★ ★ ★'} 
+               description={product.description}
                reviews={product.rating.count} 
              />
            ))}

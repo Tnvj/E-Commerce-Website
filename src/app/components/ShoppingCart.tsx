@@ -1,28 +1,29 @@
 import React, { useState, useEffect } from 'react';
 
 interface ShoppingCartProps {
-  item: ShoppingCartItem;
+  // item: ShoppingCartItem;
   onQuantityChange: (quantity: number) => void;
+  quantity: number;
 }
 
-const ShoppingCart: React.FC<ShoppingCartProps> = ({ item, onQuantityChange }) => {
-  const [quantity, setQuantity] = useState(item.quantity);
+const ShoppingCart: React.FC<ShoppingCartProps> = ({  onQuantityChange,quantity }) => {
+  // const [quantity, setQuantity] = useState(item.quantity);
 
   // Update quantity state when item prop changes
-  useEffect(() => {
-    setQuantity(item.quantity);
-  }, [item.quantity]);
+  // useEffect(() => {
+  //   setQuantity(item.quantity);
+  // }, [item.quantity]);
 
   const handleIncrement = () => {
     const newQuantity = quantity + 1;
-    setQuantity(newQuantity);
+    // setQuantity(newQuantity);
     onQuantityChange(newQuantity);
   };
 
   const handleDecrement = () => {
     if (quantity > 1) {
       const newQuantity = quantity - 1;
-      setQuantity(newQuantity);
+      // setQuantity(newQuantity);
       onQuantityChange(newQuantity);
     }
   };

@@ -14,16 +14,6 @@ interface ProductCardProps {
   reviews: number;
   description: string;
 }
-interface ShoppingCartItem {
-  id: number;
-  image: string;
-  name: string;
-  discount: number;
-  originalPrice: number;
-  discountedPrice: number;
-  quantity: number;
-}
-
 
 const ProductCard: React.FC<ProductCardProps> = ({
   image,
