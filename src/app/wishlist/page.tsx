@@ -49,6 +49,7 @@ const HomePage: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {productsWishlist.map((product, index) => (
             <ProductCard
+            description=''
               key={index}
               id = {product.id}
               image={product.image}
@@ -73,6 +74,7 @@ const HomePage: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {productsJustForYou.map((product, index) => (
             <ProductCard
+            description=''
               key={index}
               id = {product.id}
               image={product.image}
