@@ -3,8 +3,8 @@ import React from 'react';
 const Header: React.FC = () => {
   return (
     <>
-      <div className="bg-black text-white flex justify-between items-center py-2 px-4">
-        <div className="text-center flex-grow">
+      <div className="bg-black text-white flex flex-col md:flex-row justify-between items-center py-2 px-4">
+        <div className="text-center md:text-left flex-grow mb-2 md:mb-0">
           <span>
             Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!
           </span>
@@ -12,7 +12,7 @@ const Header: React.FC = () => {
             Shop Now
           </a>
         </div>
-        <div className="relative pr-16">
+        <div className="relative pr-0 md:pr-16">
           <select className="bg-black text-white border-none focus:ring-2 focus:ring-blue-600 rounded">
             <option value="en">English</option>
             <option value="es">Spanish</option>
@@ -22,9 +22,9 @@ const Header: React.FC = () => {
         </div>
       </div>
       <header className="bg-white shadow">
-        <div className="container mx-auto flex justify-between items-center py-4 px-6">
-          <div className="text-2xl text-black font-bold">Exclusive</div>
-          <nav className="space-x-4">
+        <div className="container mx-auto flex flex-col md:flex-row justify-between items-center py-4 px-6">
+          <div className="text-2xl text-black font-bold mb-2 md:mb-0">Exclusive</div>
+          <nav className="space-x-4 mb-2 md:mb-0">
             <a href="/home" className="text-gray-700 hover:text-gray-900">
               Home
             </a>
@@ -38,11 +38,11 @@ const Header: React.FC = () => {
               Sign Up
             </a>
           </nav>
-          <div className="relative flex items-center">
+          <div className="relative flex items-center w-full md:w-auto">
             <input
               type="text"
               placeholder="What are you looking for?"
-              className="border border-gray-300 bg-gray-50 rounded-md py-2 pl-2 pr-12 focus:outline-none focus:ring focus:border-blue-300 text-xs text-black"
+              className="w-full md:w-64 border border-gray-300 bg-gray-50 rounded-md py-2 pl-2 pr-10 focus:outline-none focus:ring focus:border-blue-300 text-xs text-black"
             />
             <svg
               xmlns="http://www.w3.org/2000/svg"

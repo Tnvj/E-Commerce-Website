@@ -15,7 +15,7 @@ const Header1: React.FC = () => {
 
   return (
     <>
-      <div className="bg-black text-white flex justify-between items-center py-2 px-4">
+      <div className="bg-black text-white flex justify-center items-center py-2 px-4">
         <div className="text-center flex-grow">
           <span>
             Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!
@@ -24,7 +24,7 @@ const Header1: React.FC = () => {
             Shop Now
           </a>
         </div>
-        <div className="relative pr-16">
+        <div className="relative pr-4">
           <select className="bg-black text-white border-none focus:ring-2 focus:ring-blue-500 rounded">
             <option value="en">English</option>
             <option value="es">Spanish</option>
@@ -34,9 +34,9 @@ const Header1: React.FC = () => {
         </div>
       </div>
       <header className="bg-white shadow">
-        <div className="container mx-auto flex justify-between items-center py-4 px-6">
+        <div className="container mx-auto flex flex-wrap justify-between items-center py-4 px-6">
           <div className="text-2xl text-black font-bold">Exclusive</div>
-          <nav className="space-x-4">
+          <nav className="hidden md:flex space-x-4">
             <a href="/home" className="text-gray-700 hover:text-gray-900">
               Home
             </a>
@@ -50,12 +50,12 @@ const Header1: React.FC = () => {
               Sign Up
             </a>
           </nav>
-          <div className="relative flex items-center space-x-4">
-            <div className="relative">
+          <div className="flex items-center space-x-4 mt-4 md:mt-0">
+            <div className="relative w-full md:w-auto">
               <input
                 type="text"
                 placeholder="What are you looking for?"
-                className="border border-gray-300 bg-gray-50 rounded-md py-2 pl-2 pr-10 focus:outline-none focus:ring focus:border-blue-300 text-xs text-black"
+                className="w-full md:w-64 border border-gray-300 bg-gray-50 rounded-md py-2 pl-2 pr-10 focus:outline-none focus:ring focus:border-blue-300 text-xs text-black"
                 style={{ paddingRight: '2.5rem' }}
               />
               <button className="absolute right-2 top-1/2 transform -translate-y-1/2">
@@ -66,7 +66,7 @@ const Header1: React.FC = () => {
                 />
               </button>
             </div>
-            <a href="wishlist">
+            <a href="/wishlist">
               <img
                 src="/images/heart.png"
                 alt="Favorites"

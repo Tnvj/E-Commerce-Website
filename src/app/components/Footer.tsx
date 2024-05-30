@@ -3,7 +3,7 @@ import React from 'react';
 const Footer: React.FC = () => {
   return (
     <footer className="bg-black text-white py-8 mt-12">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+      <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
         <div>
           <h3 className="text-xl font-bold mb-4">Exclusive</h3>
           <p className="mt-4 mb-2 font-semibold">Subscribe</p>
@@ -31,7 +31,7 @@ const Footer: React.FC = () => {
         </div>
         <div>
           <h3 className="text-xl font-bold mb-4">Support</h3>
-          <p>111 Bijoy sarani, Dhaka, DH 1515, Bangladesh.</p>
+          <p>111 Bijoy Sarani, Dhaka, DH 1515, Bangladesh.</p>
           <p>exclusive@gmail.com</p>
           <p>+88015-88888-9999</p>
         </div>
