@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { isTokenExpired, logout } from '../services/api'; 
+import { isTokenExpired, logout } from '../services/api';
 
 const Header1 = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
@@ -13,12 +13,13 @@ const Header1 = () => {
   const hideDropdown = () => {
     hideDropdownTimeout = setTimeout(() => {
       setDropdownVisible(false);
-    }, 200); 
+    }, 200);
+  };
 
   const handleLogout = async () => {
     try {
       await logout();
-      localStorage.removeItem('token'); 
+      localStorage.removeItem('token');
       window.location.href = '/'; 
     } catch (error) {
       console.error('Logout failed:', error);
@@ -30,7 +31,7 @@ const Header1 = () => {
     if (token && !isTokenExpired()) {
       window.location.href = path;
     } else {
-      window.location.href = '/login';
+      window.location.href = '/';
     }
   };
 
@@ -152,7 +153,7 @@ const Header1 = () => {
                     </button>
                   ) : (
                     <a
-                      href="/login"
+                      href="/"
                       className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                     >
                       Sign In
@@ -168,6 +169,5 @@ const Header1 = () => {
     </>
   );
 };
-}
 
 export default Header1;
