@@ -1,8 +1,28 @@
-import React from 'react';
+"use client";
+import React, { useState } from 'react';
+import { login } from './services/api'; 
 import Header from './components/Header';
 import Footer from './components/Footer';
 
 const LoginPage = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+
+      setError('');
+
+      const result = await login({ username, password });
+      window.location.href = '/home';
+    } catch (error: any) {
+      setError(error.message);
+      console.error('Sign in error:', error);
+    }
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -21,25 +41,34 @@ const LoginPage = () => {
                 Log in to Exclusive
               </h2>
               <h2 className="text-lg mb-8 text-black">Enter your details below</h2>
-              <form>
+              <form onSubmit={handleSubmit}> 
                 <div className="mb-4">
                   <input
                     type="text"
-                    id="email"
-                    placeholder='Email or Phone Number'
+                    id="username"
+                    name="username"
+                    placeholder="Username"
                     className="w-full p-4 border-b border-gray-300 text-black"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    required
                   />
                 </div>
                 <div className="mb-6">
                   <input
                     type="password"
                     id="password"
-                    placeholder='Password'
+                    name="password"
+                    placeholder="Password"
                     className="w-full p-4 border-b border-gray-300 text-black"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
                   />
                 </div>
+                {error && <p className="text-red-500 mb-4">{error}</p>}
                 <div className="flex justify-between items-center">
-                  <button className="bg-red-500 text-white py-4 px-8 rounded-md hover:bg-red-700">
+                  <button type="submit" className="bg-red-500 text-white py-4 px-8 rounded-md hover:bg-red-700">
                     Log In
                   </button>
                   <a href="#" className="text-red-500 hover:text-red-700">

@@ -1,17 +1,40 @@
-"use client";
+import React, { useState, useEffect } from 'react';
+import { isTokenExpired, logout } from '../services/api'; 
 
-import React, { useState } from 'react';
-
-const Header1: React.FC = () => {
+const Header1 = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
+  let hideDropdownTimeout: NodeJS.Timeout;
 
   const showDropdown = () => {
+    clearTimeout(hideDropdownTimeout);
     setDropdownVisible(true);
   };
 
   const hideDropdown = () => {
-    setDropdownVisible(false);
+    hideDropdownTimeout = setTimeout(() => {
+      setDropdownVisible(false);
+    }, 200); 
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      localStorage.removeItem('token'); 
+      window.location.href = '/'; 
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
   };
+
+  const handleRedirect = (path: string) => {
+    const token = localStorage.getItem('token');
+    if (token && !isTokenExpired()) {
+      window.location.href = path;
+    } else {
+      window.location.href = '/login';
+    }
+  };
+
+  const isAuthenticated = !!localStorage.getItem('token');
 
   return (
     <>
@@ -46,9 +69,11 @@ const Header1: React.FC = () => {
             <a href="/about" className="text-gray-700 hover:text-gray-900">
               About
             </a>
-            <a href="/signup" className="text-gray-700 hover:text-gray-900">
-              Sign Up
-            </a>
+            {!isAuthenticated && (
+              <a href="/signup" className="text-gray-700 hover:text-gray-900">
+                Sign Up
+              </a>
+            )}
           </nav>
           <div className="flex items-center space-x-4 mt-4 md:mt-0">
             <div className="relative w-full md:w-auto">
@@ -66,18 +91,18 @@ const Header1: React.FC = () => {
                 />
               </button>
             </div>
-            <a href="/wishlist">
+            <a onClick={() => handleRedirect('/wishlist')}>
               <img
                 src="/images/heart.png"
                 alt="Favorites"
-                className="h-6 w-6"
+                className="h-6 w-6 cursor-pointer"
               />
             </a>
-            <a href="/cart">
+            <a onClick={() => handleRedirect('/cart')}>
               <img
                 src="/images/cart1.png"
                 alt="Shopping Cart"
-                className="h-6 w-6"
+                className="h-6 w-6 cursor-pointer"
               />
             </a>
             <div
@@ -85,13 +110,13 @@ const Header1: React.FC = () => {
               onMouseEnter={showDropdown}
               onMouseLeave={hideDropdown}
             >
-              <a href="#" className="hover:text-red-500">
+              <div className="hover:text-red-500">
                 <img
                   src="/images/user.png"
                   alt="Profile"
                   className="h-6 w-6"
                 />
-              </a>
+              </div>
               {dropdownVisible && (
                 <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10">
                   <a
@@ -118,12 +143,21 @@ const Header1: React.FC = () => {
                   >
                     My Reviews
                   </a>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                  >
-                    Logout
-                  </a>
+                  {isAuthenticated ? (
+                    <button
+                      onClick={handleLogout}
+                      className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    >
+                      Logout
+                    </button>
+                  ) : (
+                    <a
+                      href="/login"
+                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    >
+                      Sign In
+                    </a>
+                  )}
                 </div>
               )}
             </div>
@@ -134,5 +168,6 @@ const Header1: React.FC = () => {
     </>
   );
 };
+}
 
 export default Header1;
