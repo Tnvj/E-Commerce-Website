@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const PromoSection: React.FC = () => {
   const calculateTimeLeft = () => {
-    const difference = +new Date('2024-06-01T00:00:00') - +new Date();
+    const difference = +new Date('2024-07-01T00:00:00') - +new Date();
     let timeLeft: any = {};
 
     if (difference > 0) {
@@ -45,18 +45,18 @@ const PromoSection: React.FC = () => {
   });
 
   return (
-    <div className="flex justify-center items-center py-16">
-      <div className="flex flex-col lg:flex-row justify-between items-center w-full lg:w-2/3 xl:w-3/4 p-6 lg:p-12 bg-black rounded-sm">
+    <div className="flex justify-center items-center py-16 mx-24">
+      <div className="flex justify-between items-center w-full  px-6 bg-black rounded-sm">
         <div className="flex flex-col justify-center mb-8 lg:mb-0 text-center lg:text-left">
           <div className="text-green-500 mb-2 text-lg lg:text-xl">Categories</div>
-          <div className="text-3xl lg:text-5xl font-bold mb-4">Enhance Your Music Experience</div>
+          <div className="text-3xl lg:text-5xl font-medium mb-4">Enhance Your Music Experience</div>
           <div className="flex justify-center lg:justify-start mb-4">
             {timerComponents.length ? timerComponents : <span>Time's up!</span>}
           </div>
-          <button className="bg-green-500 text-white px-4 py-2 rounded-md w-32 lg:w-auto text-sm lg:text-base">Buy Now!</button>
+          <button className="bg-green-500 text-white px-4 py-2 rounded-sm w-32 lg:w-1/2 text-sm lg:text-base">Buy Now!</button>
         </div>
         <div className="lg:ml-8 mt-8 lg:mt-0">
-          <Image src="/images/jbl1.png" alt="JBL Speaker" width={350} height={250} layout="intrinsic" />
+          <img src="/images/jbl1.png" alt="JBL Speaker" className='w-fill' />
         </div>
       </div>
     </div>

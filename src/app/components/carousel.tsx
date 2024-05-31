@@ -1,26 +1,24 @@
-"use client";
+import React, { useState, useEffect } from 'react';
 
-import { useEffect, useState } from 'react';
-import Image from 'next/image';
-
-interface Slide {
-  text: string;
-  subtext: string;
-  imgSrc: string; 
-}
-
-const slides: Slide[] = [
+const slides = [
   {
-    text: "Up to 10% off Voucher",
-    subtext: "iPhone 14 Series",
-    imgSrc: "/images/login.png", 
+    title: 'iPhone 14 Series',
+    description: 'Up to 10% off Voucher',
+    image: '/images/iphone.png',
+    link: '#'
   },
   {
-    text: "Exclusive Deals on Electronics",
-    subtext: "Save big on top brands",
-    imgSrc: "/images/slide2.png", 
+    title: 'Samsung Galaxy S21',
+    description: 'Save $200 on Pre-order',
+    image: '/images/iphone.png',
+    link: '#'
   },
-
+  {
+    title: 'Google Pixel 6',
+    description: 'Exclusive Offer for Limited Time',
+    image: '/images/iphone.png',
+    link: '#'
+  }
 ];
 
 const Carousel: React.FC = () => {
@@ -28,27 +26,41 @@ const Carousel: React.FC = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 10000);
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
+    }, 5000); // 10 seconds interval
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="relative w-full h-3/5 overflow-hidden flex items-center justify-center bg-black p-4">
-      <div className="flex transition-transform ease-in-out duration-1000" style={{ transform: `translateX(-${currentSlide * 100}%)`, width: `${slides.length * 100}%` }}>
+    <div className="relative w-full max-w-lg mx-auto overflow-hidden">
+      <div
+        className="flex transition-transform duration-1000 ease-in-out"
+        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+      >
         {slides.map((slide, index) => (
-          <div key={index} className="min-w-full h-full flex items-center justify-center bg-black">
-            <div className="flex flex-col md:flex-row items-center justify-center w-full h-full">
-              <div className="p-6 md:w-1/2 text-left text-white flex flex-col justify-center">
-                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">{slide.text}</h2>
-                <p className="text-lg md:text-xl mb-6">{slide.subtext}</p>
-                <button className="px-4 py-2 text-white">Shop Now</button>
-              </div>
-              <div className="md:w-1/2 flex items-center justify-center">
-                <Image src={slide.imgSrc} alt="Banner Image" width={500} height={500} className="object-contain" />
-              </div>
+          <div
+            key={index}
+            className="min-w-full flex-shrink-0 bg-black text-white p-8 flex items-center justify-between"
+            style={{ padding: '40px' }} // Add padding around the text and image
+          >
+            <div>
+              <h2 className="text-3xl font-bold">{slide.title}</h2>
+              <p className="text-xl mt-2 mb-4">{slide.description}</p>
+              <a href={slide.link} className="text-white py-2 px-4">Shop Now</a>
+            </div>
+            <div>
+              <img src={slide.image} alt={slide.title} className="h-48 w-48 object-cover rounded-lg" style={{ padding: '10px' }} />
             </div>
           </div>
+        ))}
+      </div>
+      {/* Pagination dots */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+        {slides.map((_, index) => (
+          <span
+            key={index}
+            className={`block w-3 h-3 rounded-full ${index === currentSlide ? 'bg-white' : 'bg-gray-400'}`}
+          ></span>
         ))}
       </div>
     </div>

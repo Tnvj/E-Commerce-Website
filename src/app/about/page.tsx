@@ -8,8 +8,8 @@ const About = () => {
   return (
     <div className="min-h-screen flex flex-col bg-white text-black">
       <Header />
-      <main className="container mx-auto p-4 flex-grow">
-        <section className="my-8 grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+      <main className="flex-grow">
+        <section className="flex justify-center items-center">
           <div className="md:pr-8">
             <h2 className="text-3xl font-bold mb-4">Our Story</h2>
             <p>
@@ -20,7 +20,7 @@ const About = () => {
             </p>
           </div>
           <div className="mt-4 md:mt-0 h-full">
-            <img src="/images/women.png" alt="Shopping" className="w-full h-full object-cover"/>
+            <img src="/images/women.png" alt="Shopping" className="w-fill object-cover"/>
           </div>
         </section>
 

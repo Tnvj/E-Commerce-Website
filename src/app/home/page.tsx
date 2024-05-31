@@ -24,9 +24,10 @@ interface Product {
 }
 
 
+
 const Page: React.FC = () => {
 
-  const targetDate = new Date('2024-06-01T00:00:00');
+  const targetDate = new Date('2024-07-01T00:00:00');
 
   const [productsOurProduct, setProductsOurProduct] = useState<Product[]>([]);
   const [productsJustForYou, setProductsJustForYou] = useState<Product[]>([]);
@@ -56,17 +57,16 @@ const Page: React.FC = () => {
       <Header />
       <main className='mb-24'>
         
-        <div className="flex h-screen pr-24 pl-24">
-          <Sidebar />
-          <div className="flex-1 flex items-center justify-center">
-            <div className="w-full h-full bg-white flex items-center justify-center">
-              <div className="h-4/5 bg-white p-4">
-                <Carousel />
-              </div>
-            </div>
-          </div>
-        </div>
-
+      <div className="flex h-50vh mx-4 mb-4"> {/* Adds margin on both sides */}
+  <Sidebar />
+  <div className="w-full h-screen/2 overflow-hidden">
+    <div className="h-full bg-white flex items-center justify-center p-4">
+      <div className="h-4/5 w-4/5">
+        <Carousel />
+      </div>
+    </div>
+  </div>
+</div>
         <section className="mt-8 px-4 lg:px-24">
       <div className="flex justify-between items-center mb-4">
         <CountdownTimer targetDate={targetDate} />
@@ -97,6 +97,8 @@ const Page: React.FC = () => {
         <a href='/wishlist'><button className="bg-red-500 text-white px-6 py-2 rounded-md">View All Products</button></a>
       </div>
     </section>
+
+
         <section className="mt-8 px-8 lg:px-24">
         <div className="flex justify-between items-center mb-4">
             <div><div className='flex'><div className="bg-red-500 w-4 h-8 mr-2 rounded-md"></div>
@@ -104,13 +106,13 @@ const Page: React.FC = () => {
             </div>
             <h2 className="text-2xl font-medium text-black">Browse By Category</h2>
           </div></div>
-      <div className="gap-6 flex justify-center flex-wrap">
+      <div className="flex justify-between">
         <CategoryCard icon="/images/category-CellPhone.png" title="Phones" />
         <CategoryCard icon="/images/Category-Computer.png" title="Computers" />
         <CategoryCard icon="/images/Category-SmartWatch.png" title="SmartWatch" />
         <CategoryCard icon="/images/Category-Camera.png" title="Camera" />
         <CategoryCard icon="/images/Category-Headphone.png" title="HeadPhones" />
-        <CategoryCard icon="/images/Category-Gaming.png" title="Gaming" />
+        <CategoryCard icon="/images/Category-Gamepad.png" title="Gaming" />
       </div>
     </section>
     <section className="mt-8 px-8 lg:px-24">
@@ -175,7 +177,7 @@ const Page: React.FC = () => {
          <button className="bg-red-500 text-white px-6 py-2 rounded-sm">View All Products</button>
        </div></section>
 
-    <section className="mt-24 px-4 max-w-screen-xl mx-auto">
+    <section className="mt-24 px-4 mx-24">
     <div className="flex items-center mb-4">
         <div>
             <div className='flex items-center mb-2'>
@@ -186,38 +188,38 @@ const Page: React.FC = () => {
         </div>
     </div>
     <div className="grid grid-cols-2 gap-4">
-        <div className="relative">
-            <img src="/images/ps.png" alt="PlayStation 5" className="w-full h-full object-cover rounded-sm" />
+        <div className="relative bg-black">
+            <img src="/images/ps.png" alt="PlayStation 5" className="h-fill object-cover rounded-sm" />
             <div className="absolute bottom-4 left-4 text-white">
                 <h3 className="text-lg font-bold">PlayStation 5</h3>
                 <p>Black and White version of the PS5 coming out on sale.</p>
-                <button className="mt-2 text-white px-4 py-2 rounded-md bg-black">Shop Now</button>
+                <button className="mt-2 text-white px-4 py-2 rounded-md underline">Shop Now</button>
             </div>
         </div>
         <div className="grid grid-rows-2 gap-4">
-            <div className="relative">
-                <img src="/images/ps.png" alt="Women's Collections" className="w-full h-full object-cover rounded-sm" />
+            <div className="relative bg-black">
+                <img src="/images/attractive-woman-wearing-hat-posing-black-background.png" alt="Women's Collections" className="h-fill object-cover rounded-sm" />
                 <div className="absolute bottom-4 left-4 text-white">
                     <h3 className="text-lg font-bold">Women's Collections</h3>
                     <p>Featured woman collections that give you another vibe.</p>
-                    <button className="mt-2 text-white px-4 py-2 rounded-md bg-black">Shop Now</button>
+                    <button className="mt-2 text-white px-4 py-2 rounded-md underline">Shop Now</button>
                 </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
-                <div className="relative">
-                    <img src="/images/ps.png" alt="Speakers" className="w-full h-full object-cover rounded-sm" />
+                <div className="relative bg-black">
+                    <img src="/images/speaker.png" alt="Speakers" className="w-fill object-cover rounded-sm p-4" />
                     <div className="absolute bottom-4 left-4 text-white">
                         <h3 className="text-lg font-bold">Speakers</h3>
                         <p>Amazon wireless speakers</p>
-                        <button className="mt-2 text-white px-4 py-2 rounded-md bg-black">Shop Now</button>
+                        <button className="mt-2 text-white px-4 py-2 rounded-md underline">Shop Now</button>
                     </div>
                 </div>
-                <div className="relative">
-                    <img src="/images/ps.png" alt="Perfume" className="w-full h-full object-cover rounded-sm" />
+                <div className="relative bg-black">
+                    <img src="/images/gucci.png" alt="Perfume" className="w-fill object-cover rounded-sm p-4" />
                     <div className="absolute bottom-4 left-4 text-white">
                         <h3 className="text-lg font-bold">Perfume</h3>
                         <p>GUCCI INTENSE OUD EDP</p>
-                        <button className="mt-2 text-white px-4 py-2 rounded-md bg-black">Shop Now</button>
+                        <button className="mt-2 text-white px-4 py-2 rounded-md underline">Shop Now</button>
                     </div>
                 </div>
             </div>
