@@ -3,7 +3,7 @@ import React from 'react';
 const Footer: React.FC = () => {
   return (
     <footer className="bg-black text-white py-8 mt-12">
-      <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+      <div className="container mx-auto grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
         <div>
           <h3 className="text-xl font-bold mb-4">Exclusive</h3>
           <p className="mt-4 mb-2 font-semibold">Subscribe</p>
@@ -65,7 +65,7 @@ const Footer: React.FC = () => {
             </li>
           </ul>
         </div>
-        <div>
+        <div className="md:col-span-2 lg:col-span-1">
           <h3 className="text-xl font-bold mb-4">Quick Link</h3>
           <ul className="space-y-2">
             <li>
@@ -90,39 +90,42 @@ const Footer: React.FC = () => {
             </li>
           </ul>
         </div>
-        <div>
+        <div className="md:col-span-2 lg:col-span-1">
           <h3 className="text-xl font-bold mb-4">Download App</h3>
-          <div className="flex flex-col items-start space-y-4">
-            <a href="#">
-              <img
-                src="/images/googleplay.png"
-                alt="Google Play"
-                className="h-12"
-              />
-            </a>
-            <a href="#">
-              <img
-                src="/images/appstore.png"
-                alt="App Store"
-                className="h-12"
-              />
-            </a>
-          </div>
-          <div className="mt-8">
-            <div className="flex justify-start space-x-4">
-              <a href="#" className="hover:text-gray-400">
-                <img src="/images/facebook.png" alt="Facebook" className="h-6 w-6" />
+          <div className="flex flex-col md:flex-row md:items-center md:space-x-4">
+            <div className="mb-4 md:mb-0">
+              <img src="/images/qr.png" alt="QR Code" className="h-24 w-24" />
+            </div>
+            <div className="flex flex-col space-y-2">
+              <a href="https://play.google.com/store/games">
+                <img
+                  src="/images/googleplay.png"
+                  alt="Google Play"
+                  className="h-12"
+                />
               </a>
-              <a href="#" className="hover:text-gray-400">
-                <img src="/images/twitter.png" alt="Twitter" className="h-6 w-6" />
-              </a>
-              <a href="#" className="hover:text-gray-400">
-                <img src="/images/instagram.png" alt="Instagram" className="h-6 w-6" />
-              </a>
-              <a href="#" className="hover:text-gray-400">
-                <img src="/images/linkedin.png" alt="LinkedIn" className="h-6 w-6" />
+              <a href="#">
+                <img
+                  src="/images/appstore.png"
+                  alt="App Store"
+                  className="h-12"
+                />
               </a>
             </div>
+          </div>
+          <div className="mt-8 flex justify-start space-x-4">
+            <a href="#" className="hover:text-gray-400">
+              <img src="/images/facebook.png" alt="Facebook" className="h-6 w-6" />
+            </a>
+            <a href="#" className="hover:text-gray-400">
+              <img src="/images/twitter.png" alt="Twitter" className="h-6 w-6" />
+            </a>
+            <a href="#" className="hover:text-gray-400">
+              <img src="/images/instagram.png" alt="Instagram" className="h-6 w-6" />
+            </a>
+            <a href="#" className="hover:text-gray-400">
+              <img src="/images/linkedin.png" alt="LinkedIn" className="h-6 w-6" />
+            </a>
           </div>
         </div>
       </div>

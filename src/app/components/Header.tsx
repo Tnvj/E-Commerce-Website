@@ -3,8 +3,8 @@ import React from 'react';
 const Header: React.FC = () => {
   return (
     <>
-      <div className="bg-black text-white flex flex-col md:flex-row justify-between items-center py-2 px-4">
-        <div className="text-center md:text-left flex-grow mb-2 md:mb-0">
+      <div className="bg-black text-white flex justify-center items-center py-2 px-4">
+        <div className="text-center flex-grow">
           <span>
             Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!
           </span>
@@ -12,8 +12,8 @@ const Header: React.FC = () => {
             Shop Now
           </a>
         </div>
-        <div className="relative pr-0 md:pr-16">
-          <select className="bg-black text-white border-none focus:ring-2 focus:ring-blue-600 rounded">
+        <div className="relative">
+          <select className="bg-black text-white border-none focus:ring-2 focus:ring-blue-500 rounded">
             <option value="en">English</option>
             <option value="es">Spanish</option>
             <option value="fr">French</option>

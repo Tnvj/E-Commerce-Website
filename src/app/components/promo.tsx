@@ -35,8 +35,10 @@ const PromoSection: React.FC = () => {
 
     return (
       <div key={interval} className="text-center mx-2">
-        <div className="flex flex-col justify-center items-center bg-white rounded-full text-black p-4 m-2"
-             style={{ width: '6vw', height: '6vw', minWidth: '40px', minHeight: '40px' }}>
+        <div
+          className="flex flex-col justify-center items-center bg-white rounded-full text-black p-4 m-2"
+          style={{ width: '6vw', height: '6vw', minWidth: '40px', minHeight: '40px' }}
+        >
           <div className="text-lg font-bold">{timeLeft[interval]}</div>
           <div className="text-xs">{interval.charAt(0).toUpperCase() + interval.slice(1)}</div>
         </div>
@@ -45,18 +47,20 @@ const PromoSection: React.FC = () => {
   });
 
   return (
-    <div className="flex justify-center items-center py-16 mx-24">
-      <div className="flex justify-between items-center w-full  px-6 bg-black rounded-sm">
+    <div className="flex justify-center items-center py-16 px-4 md:px-24 my-8">
+      <div className="flex justify-between items-center w-full px-6 bg-black rounded-sm">
         <div className="flex flex-col justify-center mb-8 lg:mb-0 text-center lg:text-left">
           <div className="text-green-500 mb-2 text-lg lg:text-xl">Categories</div>
           <div className="text-3xl lg:text-5xl font-medium mb-4">Enhance Your Music Experience</div>
           <div className="flex justify-center lg:justify-start mb-4">
             {timerComponents.length ? timerComponents : <span>Time's up!</span>}
           </div>
-          <button className="bg-green-500 text-white px-4 py-2 rounded-sm w-32 lg:w-1/2 text-sm lg:text-base">Buy Now!</button>
+          <button className="bg-green-500 text-white px-4 py-2 rounded-sm w-32 lg:w-1/2 text-sm lg:text-base">
+            Buy Now!
+          </button>
         </div>
         <div className="lg:ml-8 mt-8 lg:mt-0">
-          <img src="/images/jbl1.png" alt="JBL Speaker" className='w-fill' />
+          <img src="/images/jbl1.png" alt="JBL Speaker" className="w-fill" />
         </div>
       </div>
     </div>

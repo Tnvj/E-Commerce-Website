@@ -1,4 +1,3 @@
-// pages/Product.tsx
 'use client'
 
 import React, { useEffect, useState } from 'react';
@@ -6,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import Header1 from '../components/Header1';
 import Footer from '../components/Footer';
 import ProductCard from '../components/ProductCard';
-// import ShoppingCart from '../components/ShoppingCart';
+import { isTokenExpired, logout } from '../services/api';
 
 interface Product {
   id: number;
@@ -84,7 +83,6 @@ const ProductPage = () => {
   const [product, setProduct] = useState<Product | null>(null);
   const [quantity, setQuantity] = useState(1);
   const [cartItems, setCartItems] = useState<AllCartItems>(() => {
-    // Load cart items from local storage
     if (typeof window !== 'undefined') {
       const storedCartItems = localStorage.getItem('cartItems');
       return storedCartItems ? JSON.parse(storedCartItems) : [];
@@ -151,6 +149,14 @@ const ProductPage = () => {
   if (!product) {
     return <div>Loading...</div>;
   }
+  const handleRedirect = (nextFunction: () => void) => {
+    const token = localStorage.getItem('token');
+    if (token && !isTokenExpired()) {
+      nextFunction();
+    } else {
+      window.location.href = '/';
+    }
+  };
 
   return (
     <div className="bg-white">
@@ -165,22 +171,25 @@ const ProductPage = () => {
             </nav>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-2 gap-8 text-black">
-            <div className="flex flex-col items-center">
-              <div className="grid grid-rows-1 grid-cols-4 gap-2">
-                <img src={product.image} alt="Gamepad view 1" className="h-full" />
-                <img src={product.image} alt="Gamepad view 2" className="h-full" />
-                <img src={product.image} alt="Gamepad view 3" className="h-full" />
-                <img src={product.image} alt="Gamepad view 4" className="h-full" />
-              </div>
-              <img src={product.image} alt={product.title} className="w-full mb-4" />
-            </div>
-            <div>
+          <div className="flex flex-col items-center justify-center">
+  <div className="flex flex-col md:flex-row justify-center ">
+    <div className="grid grid-rows-4 grid-cols-1 gap-2 mr-8 justify-between">
+      <img src={product.image} alt="Gamepad view 1" className="h-28" />
+      <img src={product.image} alt="Gamepad view 2" className="h-28" />
+      <img src={product.image} alt="Gamepad view 3" className="h-28" />
+      <img src={product.image} alt="Gamepad view 4" className="h-28" />
+    </div>
+    <img src={product.image} alt={product.title} className="w-1/2 mb-4 mx-4" />
+  </div>
+</div>
+            <div className='mx-8'>
               <h1 className="text-3xl font-bold mb-2">{product.title}</h1>
               <div className="flex items-center mb-2">
                 <span className="text-yellow-400 mr-2">★ ★ ★ ★ ★</span>
-                <span className="text-gray-500">({product.rating.count} Reviews)</span>
+                <div className="text-gray-500">({product.rating.count} Reviews)</div>
+                <div className="text-green-500 mx-2 border-l pl-2 border-black">In Stock</div>
               </div>
-              <div className="text-green-500 mb-4">In Stock</div>
+              
               <div className="text-2xl mb-4">${product.price.toFixed(2)}</div>
               <p className="mb-4">{product.description}</p>
               <hr className='black-hr my-4' />
@@ -195,7 +204,7 @@ const ProductPage = () => {
                 <span className="mr-4">Size:</span>
                 <div className="flex">
                   {['XS', 'S', 'M', 'L', 'XL'].map(size => (
-                    <button key={size} className="border border-gray-500 px-2 py-1 rounded-lg mr-2">{size}</button>
+                    <button key={size} className="border border-gray-500 px-2 py-1 rounded-lg mr-2 hover:bg-red-500">{size}</button>
                   ))}
                 </div>
               </div>
@@ -204,26 +213,39 @@ const ProductPage = () => {
                   <button className="px-4 py-2" onClick={handleDecrement}>-</button>
                   <span className="px-4 py-2 border-l border-r border-gray-500">{quantity}</span>
                   <button className="px-4 py-2 bg-red-500 text-white" onClick={handleIncrement}>+</button>
+                  
                 </div>
-              </div>
-              <button onClick={handleBuyNow} className="bg-red-500 text-white px-4 py-2 rounded-md ml-4 mr-2">Buy Now</button>
-              <button className="border border-gray-500 px-4 py-2 rounded-md">❤</button>
+                <div><img
+                src="/images/heart.png"
+                alt="Favorites"
+                className="px-2 py-2 w-10 mx-4 cursor-pointer  rounded-md border border-black hover:bg-red-500"
+              /></div>
+              <button 
+  onClick={() => handleRedirect(handleBuyNow)} 
+  className="bg-red-500 text-white px-4 py-2 rounded-md mr-2"
+>
+  Buy Now
+</button>      </div>        
               <div className="flex flex-col mt-4 border border-black">
-                <div className="flex items-center mb-2 px-2 py-2">
-                  <img src="/images/delivery.png" alt="Delivery" className="w-6 h-6 mr-2" />
-                  <span>Free Delivery</span>
+                <div className='flex border-b border-black'>
+                <div><img src="/images/icon-delivery1.png" alt="Delivery" className="w-1/2 p-4" /></div>
+                <div className="flex-col items-center my-2 px-2 py-2">
+                  <div>Free Delivery</div>
+                  <div className="text-gray-500 underline">Enter your postal code for Delivery Availability.</div>
                 </div>
-                <div className="text-gray-500 px-2">Enter your postal code for Delivery Availability</div>
-                <div className="flex items-center mt-4 mb-2 px-2 py-2">
-                  <img src="/images/return.png" alt="Return" className="w-6 h-6 mr-2" />
-                  <span>Return Delivery</span>
                 </div>
-                <div className="text-gray-500 px-2">Free 30 Days Delivery Returns. <a href="#" className="underline">Details</a></div>
-              </div>
+                <div className='flex border-b border-black'>
+                <div><img src="/images/icon-return.png" alt="Delivery" className="w-1/2 p-4" /></div>
+                <div className="flex-col items-center my-2 px-2 py-2">
+                  <div>Return Delivery</div>
+                  <div className="text-gray-500">Free 30 Days Delivery Returns. <span className='underline'>Details</span></div>
+                </div>
+                </div>
+                </div>   
             </div>
           </div>
           <div className="flex items-center mt-8 mb-4">
-            <div className="bg-red-500 w-2 h-8 mr-2 rounded-md"></div>
+            <div className="bg-red-500 w-4 h-8 mr-2 rounded-md"></div>
             <h2 className=" text-red-500 font-bold">Related Items</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">

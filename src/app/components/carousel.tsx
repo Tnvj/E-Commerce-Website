@@ -27,12 +27,13 @@ const Carousel: React.FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-    }, 5000); // 10 seconds interval
+    }, 5000);
+
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="relative w-full max-w-lg mx-auto overflow-hidden">
+    <div className="relative w-full mx-auto overflow-hidden sm:max-w-xl md:max-w-2xl lg:max-w-4xl">
       <div
         className="flex transition-transform duration-1000 ease-in-out"
         style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -40,21 +41,25 @@ const Carousel: React.FC = () => {
         {slides.map((slide, index) => (
           <div
             key={index}
-            className="min-w-full flex-shrink-0 bg-black text-white p-8 flex items-center justify-between"
-            style={{ padding: '40px' }} // Add padding around the text and image
+            className="min-w-full flex-shrink-0 bg-black text-white flex flex-col sm:flex-row items-center justify-between"
           >
-            <div>
-              <h2 className="text-3xl font-bold">{slide.title}</h2>
-              <p className="text-xl mt-2 mb-4">{slide.description}</p>
-              <a href={slide.link} className="text-white py-2 px-4">Shop Now</a>
+            <div className="p-8 flex flex-col items-start justify-center sm:w-1/2">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold">{slide.title}</h2>
+              <p className="text-lg sm:text-xl mt-2 mb-4">{slide.description}</p>
+              <a href={slide.link} className="text-white py-2 px-4 bg-gray-700 rounded-md">
+                Shop Now
+              </a>
             </div>
-            <div>
-              <img src={slide.image} alt={slide.title} className="h-48 w-48 object-cover rounded-lg" style={{ padding: '10px' }} />
+            <div className="p-8 sm:w-1/2">
+              <img
+                src={slide.image}
+                alt={slide.title}
+                className="h-48 w-48 sm:h-64 sm:w-64 object-cover rounded-lg"
+              />
             </div>
           </div>
         ))}
       </div>
-      {/* Pagination dots */}
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
         {slides.map((_, index) => (
           <span
