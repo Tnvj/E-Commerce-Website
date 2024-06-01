@@ -4,7 +4,13 @@ import { isTokenExpired, logout } from '../services/api';
 
 const Header1 = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   let hideDropdownTimeout: NodeJS.Timeout;
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    setIsAuthenticated(!!token && !isTokenExpired());
+  }, []);
 
   const showDropdown = () => {
     clearTimeout(hideDropdownTimeout);
@@ -21,13 +27,13 @@ const Header1 = () => {
     try {
       await logout();
       localStorage.removeItem('token');
-      window.location.href = '/'; 
+      window.location.href = '/';
     } catch (error) {
       console.error('Logout failed:', error);
     }
   };
 
-  const handleRedirect = (path: string) => {
+  const handleRedirect = (path:any) => {
     const token = localStorage.getItem('token');
     if (token && !isTokenExpired()) {
       window.location.href = path;
@@ -35,8 +41,6 @@ const Header1 = () => {
       window.location.href = '/';
     }
   };
-
-  const isAuthenticated = !!localStorage.getItem('token');
 
   return (
     <>
@@ -102,7 +106,7 @@ const Header1 = () => {
             </a>
             <a onClick={() => handleRedirect('/cart')}>
               <img
-                src="/images/cart1.png"
+                src="/images/Cart1.png"
                 alt="Shopping Cart"
                 className="h-6 w-6 cursor-pointer"
               />
